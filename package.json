@@ -1,0 +1,18 @@
+{
+  "name": "practice-all-becomes-reduce",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:t-kojima/practice-all-becomes-reduce.git",
+  "author": "t-kojima <t-kojima@skullware.net>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^5.1.0",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-react": "^7.10.0",
+    "prettier": "^1.13.7"
+  }
+}
