@@ -15,6 +15,12 @@ describe('copyWithin', () => {
       assert.deepEqual(actual, [1, 1, 2, 3, 4, 5, 6, 7]);
     });
 
+    it('shift 1 when 1.6', () => {
+      const array = [1, 2, 3, 4, 5, 6, 7, 8];
+      const actual = array.copyWithin(1.6);
+      assert.deepEqual(actual, [1, 1, 2, 3, 4, 5, 6, 7]);
+    });
+
     it('shift -3', () => {
       const array = [1, 2, 3, 4, 5, 6, 7, 8];
       const actual = array.copyWithin(-3);
@@ -53,6 +59,12 @@ describe('copyWithin', () => {
       assert.deepEqual(actual, [1, 2, 3, 4, 1, 2, 3, 4]);
     });
 
+    it('shift 4 when 0.8', () => {
+      const array = [1, 2, 3, 4, 5, 6, 7, 8];
+      const actual = array.copyWithin(4, 0.8);
+      assert.deepEqual(actual, [1, 2, 3, 4, 1, 2, 3, 4]);
+    });
+
     it('shift -5 starts with 3', () => {
       const array = [1, 2, 3, 4, 5, 6, 7, 8];
       const actual = array.copyWithin(-5, 2);
@@ -82,6 +94,12 @@ describe('copyWithin', () => {
     it('shift 4 at 2 values', () => {
       const array = [1, 2, 3, 4, 5, 6, 7, 8];
       const actual = array.copyWithin(4, 0, 2);
+      assert.deepEqual(actual, [1, 2, 3, 4, 1, 2, 7, 8]);
+    });
+
+    it('shift 4 at 2 values when 2.8', () => {
+      const array = [1, 2, 3, 4, 5, 6, 7, 8];
+      const actual = array.copyWithin(4, 0, 2.8);
       assert.deepEqual(actual, [1, 2, 3, 4, 1, 2, 7, 8]);
     });
 
