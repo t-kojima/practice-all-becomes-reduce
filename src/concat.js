@@ -1,8 +1,10 @@
 /* eslint-disable array-callback-return */
-Array.prototype.concat = function(array) {
+Array.prototype.concat = function(...args) {
   const copy = Array.from(this);
-  array.reduce((acc, cur) => {
-    copy.push(cur);
-  }, []);
+  args.reduce((_, array) => {
+    array.reduce((acc, cur) => {
+      copy[copy.length] = cur;
+    }, null);
+  }, null);
   return copy;
 };
