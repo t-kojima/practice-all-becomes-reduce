@@ -2,9 +2,7 @@ Array.prototype.fill = function(target, start = 0, end = this.length) {
   const parse = value => {
     if (value > this.length) return this.length;
     if (value + this.length < 0) return 0;
-    return value < 0
-      ? this.length + Number.parseInt(value, 10)
-      : Number.parseInt(value, 10);
+    return Number.parseInt(value, 10) + (value < 0 ? this.length : 0);
   };
   const s = parse(start);
   const e = parse(end);
