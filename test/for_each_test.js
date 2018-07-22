@@ -15,6 +15,18 @@ describe('forEach', () => {
     assert.deepEqual(actual, [1, 2, 3, 4]);
   });
 
+  it('return 3 elements when use shift', () => {
+    const words = ['one', 'two', 'three', 'four'];
+    const actual = [];
+    words.forEach(word => {
+      actual.push(word);
+      if (word === 'two') {
+        words.shift();
+      }
+    });
+    assert.deepEqual(actual, ['one', 'two', 'four']);
+  });
+
   describe('set thisArg at 1', () => {
     it('return add 1', () => {
       const array = [1, 2, 3, 4];

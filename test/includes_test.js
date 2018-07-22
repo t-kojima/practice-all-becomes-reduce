@@ -14,12 +14,6 @@ describe('includes', () => {
     assert.isFalse(actual);
   });
 
-  it('return true when includes isNaN', () => {
-    const array = [0, 1, 2, 3, NaN, 5];
-    const actual = array.includes(NaN);
-    assert.isTrue(actual);
-  });
-
   describe('set fromIndex', () => {
     it('return true when fromIndex 2', () => {
       const array = ['cat', 'dog', 'bat'];
@@ -62,5 +56,23 @@ describe('includes', () => {
       const actual = array.includes('cat', -4);
       assert.isTrue(actual);
     });
+  });
+
+  it('return true when includes NaN', () => {
+    const array = [0, 1, 2, 3, NaN, 5];
+    const actual = array.includes(NaN);
+    assert.isTrue(actual);
+  });
+
+  it('return true when includes undefined', () => {
+    const array = [0, 1, 2, 3, undefined, 5];
+    const actual = array.includes(undefined);
+    assert.isTrue(actual);
+  });
+
+  it('return true when includes null', () => {
+    const array = [0, 1, 2, 3, null, 5];
+    const actual = array.includes(null);
+    assert.isTrue(actual);
   });
 });
