@@ -36,5 +36,12 @@ describe('filter', () => {
         assert.deepEqual(actual, []);
       });
     });
+
+    it('filter falsy values', () => {
+      // eslint-disable-next-line no-sparse-arrays
+      const array = [1, 3, 5, null, , undefined, 7];
+      const actual = array.filter(value => value);
+      assert.deepEqual(actual, [1, 3, 5, 7]);
+    });
   });
 });
