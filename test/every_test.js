@@ -15,10 +15,32 @@ describe('every', () => {
       assert.isTrue(actual);
     });
 
-    it('[] return true', () => {
-      const array = [];
-      const actual = array.every(value => value % 2 === 0);
-      assert.isTrue(actual);
+    describe('empty array', () => {
+      it('[] return always true', () => {
+        const array = [];
+        const actual = array.every(value => value % 2 === 0);
+        assert.isTrue(actual);
+      });
+    });
+
+    describe('sparse array', () => {
+      it('all sparse return always true', () => {
+        const array = [, , , , , ,];
+        const actual = array.every(value => value % 2 === 0);
+        assert.isTrue(actual);
+      });
+
+      it('[,,,4,,,] return true', () => {
+        const array = [, , , 4, , ,];
+        const actual = array.every(value => value % 2 === 0);
+        assert.isTrue(actual);
+      });
+
+      it('[,,,5,,,] return false', () => {
+        const array = [, , , 5, , ,];
+        const actual = array.every(value => value % 2 === 0);
+        assert.isFalse(actual);
+      });
     });
 
     describe('set thisArg at 1', () => {
