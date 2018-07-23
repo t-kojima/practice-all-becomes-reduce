@@ -58,5 +58,39 @@ describe('findIndex', () => {
         assert.equal(actual, -1);
       });
     });
+
+    describe('empty array', () => {
+      it('return -1', () => {
+        const array = [];
+        const actual = array.findIndex(value => value);
+        assert.equal(actual, -1);
+      });
+    });
+
+    describe('sparse array', () => {
+      it('return -1', () => {
+        const array = Array(10);
+        const actual = array.findIndex(value => value);
+        assert.equal(actual, -1);
+      });
+
+      it('return -1', () => {
+        const array = [, , , , undefined, , , ,];
+        const actual = array.findIndex(value => value);
+        assert.equal(actual, -1);
+      });
+
+      it('found undefined at 0 (index:4)', () => {
+        const array = [, , , , undefined, , , ,];
+        const actual = array.findIndex(value => value === undefined);
+        assert.equal(actual, 0);
+      });
+
+      it('found undefined at 0 (index:7)', () => {
+        const array = [, , , , , , , undefined, , , ,];
+        const actual = array.findIndex(value => value === undefined);
+        assert.equal(actual, 0);
+      });
+    });
   });
 });
