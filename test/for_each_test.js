@@ -1,4 +1,4 @@
-require('../src/for_each');
+// require('../src/for_each');
 const { assert } = require('chai');
 
 describe('forEach', () => {
@@ -47,6 +47,31 @@ describe('forEach', () => {
         '5[object Object]',
         '7[object Object]',
       ]);
+    });
+  });
+
+  describe('empty array', () => {
+    it('no loop', () => {
+      const array = [];
+      const actual = [];
+      array.forEach(() => actual.push(0));
+      assert.deepEqual(actual, []);
+    });
+  });
+
+  describe('sparse array', () => {
+    it('no loop', () => {
+      const array = Array(5);
+      const actual = [];
+      array.forEach(() => actual.push(0));
+      assert.deepEqual(actual, []);
+    });
+
+    it('no sparse values', () => {
+      const array = [, , 2, , , 5];
+      const actual = [];
+      array.forEach(value => actual.push(value));
+      assert.deepEqual(actual, [2, 5]);
     });
   });
 });
