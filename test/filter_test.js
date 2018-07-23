@@ -21,6 +21,22 @@ describe('filter', () => {
       assert.deepEqual(array, [1, 2, 3, 4]);
     });
 
+    describe('empty array', () => {
+      it('return empty', () => {
+        const array = [];
+        const actual = array.filter(value => value);
+        assert.deepEqual(actual, []);
+      });
+    });
+
+    describe('sparse array', () => {
+      it('return empty', () => {
+        const array = Array(10);
+        const actual = array.filter(value => value);
+        assert.deepEqual(actual, []);
+      });
+    });
+
     describe('set thisArg at 1', () => {
       it('[1,3,5,7] return [1,3,5,7]', () => {
         const array = [1, 3, 5, 7];
@@ -38,8 +54,7 @@ describe('filter', () => {
     });
 
     it('filter falsy values', () => {
-      // eslint-disable-next-line no-sparse-arrays
-      const array = [1, 3, 5, null, , undefined, 7];
+      const array = [1, 3, 5, null, , undefined, false, 7];
       const actual = array.filter(value => value);
       assert.deepEqual(actual, [1, 3, 5, 7]);
     });
