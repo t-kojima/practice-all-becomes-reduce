@@ -80,6 +80,12 @@ describe('findIndex', () => {
         assert.equal(actual, -1);
       });
 
+      it('found undefined at 1', () => {
+        const array = [0, , , , , , , ,];
+        const actual = array.findIndex(value => value === undefined);
+        assert.equal(actual, 1);
+      });
+
       it('found undefined at 0 (index:4)', () => {
         const array = [, , , , undefined, , , ,];
         const actual = array.findIndex(value => value === undefined);
