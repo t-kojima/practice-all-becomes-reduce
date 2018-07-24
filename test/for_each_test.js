@@ -1,4 +1,4 @@
-// require('../src/for_each');
+require('../src/for_each');
 const { assert } = require('chai');
 
 describe('forEach', () => {
@@ -73,5 +73,12 @@ describe('forEach', () => {
       array.forEach(value => actual.push(value));
       assert.deepEqual(actual, [2, 5]);
     });
+  });
+
+  it('loop falsy values', () => {
+    const array = [1, 3, 5, null, , undefined, false, 7];
+    const actual = [];
+    array.forEach(value => actual.push(value));
+    assert.deepEqual(actual, [1, 3, 5, null, undefined, false, 7]);
   });
 });

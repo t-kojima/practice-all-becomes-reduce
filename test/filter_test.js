@@ -1,4 +1,4 @@
-require('../src/filter');
+// require('../src/filter');
 const { assert } = require('chai');
 
 describe('filter', () => {
@@ -33,6 +33,18 @@ describe('filter', () => {
       it('return empty', () => {
         const array = Array(10);
         const actual = array.filter(value => value);
+        assert.deepEqual(actual, []);
+      });
+
+      it('return empty when check property', () => {
+        const array = Array(5);
+        const actual = array.filter((value, index) => !(index in array));
+        assert.deepEqual(actual, []);
+      });
+
+      it('return empty when check index', () => {
+        const array = Array(5);
+        const actual = array.filter((value, index) => index);
         assert.deepEqual(actual, []);
       });
     });

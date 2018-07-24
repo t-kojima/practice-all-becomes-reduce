@@ -14,6 +14,16 @@ describe('entries', () => {
     assert.equal(iterator.next().value, undefined);
   });
 
+  it('can convert array using for...of', () => {
+    const array = [1, 2, 3, 4, 5];
+    const actual = [];
+    // eslint-disable-next-line no-restricted-syntax
+    for (const value of array.entries()) {
+      actual.push(value);
+    }
+    assert.deepEqual(actual, [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5]]);
+  });
+
   it('can convert array using spread syntax', () => {
     const array = [1, 2, 3, 4, 5];
     const actual = [...array.entries()];
