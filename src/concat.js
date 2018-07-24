@@ -9,9 +9,11 @@ Array.prototype.concat = function(...args) {
     }
   };
 
-  // thisを破壊しない為、コピー配列に結果を入れていく。
-  // 疎要素のコピーとreduce of empty array回避の為、
-  // 同じ長さの配列を用意してreduceしてコピーする。
+  /**
+   * thisを破壊しない為、コピー配列に結果を入れていく。
+   * 疎要素のコピーとreduce of empty array回避の為、
+   * 同じ長さの配列を用意してreduceしてコピーする。
+   */
   const copy = list(this).reduce((acc, cur, index) => {
     pushValue(this, acc, index);
     return acc;

@@ -1,12 +1,16 @@
 /* eslint-disable no-param-reassign */
 
-// 長さが同じで要素がundefinedな配列を返す
-// 疎の配列の場合reduce of empty array回避の為
+/**
+ * 長さが同じで要素がundefinedな配列を返す
+ * 疎の配列の場合reduce of empty array回避の為
+ */
 const list = array => Array.from(Array(array.length));
 
-// 配列(to)へ配列(from)のindex位置の要素をpushする。
-// index位置が疎要素の場合はlengthを拡張して対応
-// 疎要素を維持したままpushできる。
+/**
+ * 配列(to)へ配列(from)のindex位置の要素をpushする。
+ * index位置が疎要素の場合はlengthを拡張して対応
+ * 疎要素を維持したままpushできる。
+ */
 const pushValue = (from, to, index) => {
   if (index in from) {
     to[to.length] = from[index];
@@ -15,8 +19,10 @@ const pushValue = (from, to, index) => {
   }
 };
 
-// 配列をコピーする。array.concat()と等価
-// array#concatが利用できないのでreduceで実装
+/**
+ * 配列をコピーする。array.concat()と等価
+ * array#concatが利用できないのでreduceで実装
+ */
 const clone = array =>
   list(array).reduce((acc, cur, index) => {
     pushValue(array, acc, index);
