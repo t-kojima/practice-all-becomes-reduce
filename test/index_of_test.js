@@ -75,4 +75,32 @@ describe('indexOf', () => {
     const actual = array.indexOf(null);
     assert.equal(actual, 4);
   });
+
+  describe('empty array', () => {
+    it('return -1', () => {
+      const array = [];
+      const actual = array.indexOf(undefined);
+      assert.equal(actual, -1);
+    });
+  });
+
+  describe('sparse array', () => {
+    it('return -1 when all sparse', () => {
+      const array = Array(10);
+      const actual = array.indexOf(1);
+      assert.equal(actual, -1);
+    });
+
+    it('return -1 when includes undefined', () => {
+      const array = Array(10);
+      const actual = array.indexOf(undefined);
+      assert.equal(actual, -1);
+    });
+
+    it('return 7 when includes value', () => {
+      const array = [, , , , , , , 1, , ,];
+      const actual = array.indexOf(1);
+      assert.equal(actual, 7);
+    });
+  });
 });

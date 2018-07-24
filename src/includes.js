@@ -1,16 +1,20 @@
 Array.prototype.includes = function(target, fromIndex = 0) {
-  const parse = value => {
-    if (value > this.length) return this.length;
-    if (value + this.length < 0) return 0;
-    return Number.parseInt(value, 10) + (value < 0 ? this.length : 0);
-  };
+  const list = array => Array.from(Array(array.length));
+
+  const parse = value =>
+    Math.min(
+      Math.max(Number.parseInt(value, 10) + (value < 0 ? this.length : 0), 0),
+      this.length
+    );
+
+  const sameValueZero = (v1, v2) =>
+    v1 === v2 || (Number.isNaN(v1) && Number.isNaN(v2));
+
   const findex = parse(fromIndex);
 
-  return this.reduce(
+  return list(this).reduce(
     (acc, cur, index) =>
-      !acc &&
-      index >= findex &&
-      (cur === target || (Number.isNaN(cur) && Number.isNaN(target)))
+      !acc && index >= findex && sameValueZero(this[index], target)
         ? true
         : acc,
     false

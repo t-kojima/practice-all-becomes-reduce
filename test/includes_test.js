@@ -75,4 +75,38 @@ describe('includes', () => {
     const actual = array.includes(null);
     assert.isTrue(actual);
   });
+
+  it('return true same value zero', () => {
+    const array = [+0];
+    const actual = array.includes(-0);
+    assert.isTrue(actual);
+  });
+
+  describe('empty array', () => {
+    it('return false', () => {
+      const array = [];
+      const actual = array.includes(1);
+      assert.isFalse(actual);
+    });
+  });
+
+  describe('sparse array', () => {
+    it('return false when all sparse', () => {
+      const array = Array(10);
+      const actual = array.includes(1);
+      assert.isFalse(actual);
+    });
+
+    it('return true when includes undefined', () => {
+      const array = Array(10);
+      const actual = array.includes(undefined);
+      assert.isTrue(actual);
+    });
+
+    it('return true when includes value', () => {
+      const array = [, , , , , , , 1, , ,];
+      const actual = array.includes(1);
+      assert.isTrue(actual);
+    });
+  });
 });

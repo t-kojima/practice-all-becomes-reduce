@@ -57,4 +57,38 @@ describe('join', () => {
       assert.equal(actual, 'catdogbat');
     });
   });
+
+  describe('empty array', () => {
+    it('return empty', () => {
+      const array = [];
+      const actual = array.join();
+      assert.equal(actual, '');
+    });
+
+    it('return empty when separator is "and"', () => {
+      const array = [];
+      const actual = array.join('and');
+      assert.equal(actual, '');
+    });
+  });
+
+  describe('sparse array', () => {
+    it('return empty when all sparse', () => {
+      const array = Array(10);
+      const actual = array.join();
+      assert.equal(actual, ',,,,,,,,,');
+    });
+
+    it('return joined empty when all sparse and separator is " and "', () => {
+      const array = Array(3);
+      const actual = array.join(' and ');
+      assert.equal(actual, ' and  and ');
+    });
+
+    it('return joined value', () => {
+      const array = [, 1, 2, , , 5, 6, , , 9];
+      const actual = array.join();
+      assert.equal(actual, ',1,2,,,5,6,,,9');
+    });
+  });
 });
