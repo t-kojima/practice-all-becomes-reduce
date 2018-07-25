@@ -1,5 +1,5 @@
 require('../src/find');
-const { assert } = require('chai');
+const { assert, expect } = require('chai');
 
 describe('find', () => {
   describe('if check even', () => {
@@ -91,6 +91,13 @@ describe('find', () => {
         const actual = array.find(value => value === 7);
         assert.equal(actual, 7);
       });
+    });
+  });
+
+  describe('no args', () => {
+    it('throw TypeError', () => {
+      const array = [1, 2, 3];
+      expect(() => array.find()).to.throw(TypeError);
     });
   });
 });

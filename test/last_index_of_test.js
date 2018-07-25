@@ -133,4 +133,12 @@ describe('lastIndexOf', () => {
       assert.equal(actual, 7);
     });
   });
+
+  describe('no args', () => {
+    it('return -1', () => {
+      const array = [1, 2, 3];
+      const actual = array.lastIndexOf();
+      assert.equal(actual, -1);
+    });
+  });
 });

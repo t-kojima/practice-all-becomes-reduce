@@ -1,5 +1,5 @@
 require('../src/for_each');
-const { assert } = require('chai');
+const { assert, expect } = require('chai');
 
 describe('forEach', () => {
   it('return undefined', () => {
@@ -80,5 +80,12 @@ describe('forEach', () => {
     const actual = [];
     array.forEach(value => actual.push(value));
     assert.deepEqual(actual, [1, 3, 5, null, undefined, false, 7]);
+  });
+
+  describe('no args', () => {
+    it('throw TypeError', () => {
+      const array = [1, 2, 3];
+      expect(() => array.forEach()).to.throw(TypeError);
+    });
   });
 });

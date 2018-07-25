@@ -58,6 +58,15 @@ describe('concat', () => {
     });
   });
 
+  describe('empty args', () => {
+    it('get shallow copy', () => {
+      const array = [{ a: 1 }, { b: 2 }];
+      const actual = array.concat();
+      array[0].a = 4;
+      assert.deepEqual(actual, [{ a: 4 }, { b: 2 }]);
+    });
+  });
+
   describe('empty array', () => {
     it('return empty with no args', () => {
       assert.deepEqual([].concat(), []);

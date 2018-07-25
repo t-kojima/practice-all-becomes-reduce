@@ -1,5 +1,5 @@
 require('../src/every');
-const { assert } = require('chai');
+const { assert, expect } = require('chai');
 
 describe('every', () => {
   describe('if check even', () => {
@@ -57,6 +57,13 @@ describe('every', () => {
         const actual = array.every(value => (this + value) % 2 === 0, 1);
         assert.isFalse(actual);
       });
+    });
+  });
+
+  describe('no args', () => {
+    it('throw TypeError', () => {
+      const array = [1, 2, 3];
+      expect(() => array.every()).to.throw(TypeError);
     });
   });
 });

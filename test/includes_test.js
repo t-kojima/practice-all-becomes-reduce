@@ -109,4 +109,12 @@ describe('includes', () => {
       assert.isTrue(actual);
     });
   });
+
+  describe('no args', () => {
+    it('return false', () => {
+      const array = [1, 2, 3];
+      const actual = array.includes();
+      assert.isFalse(actual);
+    });
+  });
 });

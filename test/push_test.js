@@ -54,6 +54,14 @@ describe('push', () => {
     });
   });
 
+  describe('empty item', () => {
+    it('not work', () => {
+      const array = [1, 2, 3];
+      array.push();
+      assert.deepEqual(array, [1, 2, 3]);
+    });
+  });
+
   describe('empty array', () => {
     it('append a value', () => {
       const array = [];

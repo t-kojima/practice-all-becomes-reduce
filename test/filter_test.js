@@ -1,5 +1,5 @@
-// require('../src/filter');
-const { assert } = require('chai');
+require('../src/filter');
+const { assert, expect } = require('chai');
 
 describe('filter', () => {
   describe('if check even', () => {
@@ -69,6 +69,13 @@ describe('filter', () => {
       const array = [1, 3, 5, null, , undefined, false, 7];
       const actual = array.filter(value => value);
       assert.deepEqual(actual, [1, 3, 5, 7]);
+    });
+  });
+
+  describe('no args', () => {
+    it('throw TypeError', () => {
+      const array = [1, 2, 3];
+      expect(() => array.filter()).to.throw(TypeError);
     });
   });
 });

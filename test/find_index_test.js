@@ -1,5 +1,5 @@
 require('../src/find_index');
-const { assert } = require('chai');
+const { assert, expect } = require('chai');
 
 describe('findIndex', () => {
   describe('if check even', () => {
@@ -97,6 +97,13 @@ describe('findIndex', () => {
         const actual = array.findIndex(value => value === undefined);
         assert.equal(actual, 0);
       });
+    });
+  });
+
+  describe('no args', () => {
+    it('throw TypeError', () => {
+      const array = [1, 2, 3];
+      expect(() => array.findIndex()).to.throw(TypeError);
     });
   });
 });

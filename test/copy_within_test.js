@@ -2,6 +2,14 @@ require('../src/copy_within');
 const { assert } = require('chai');
 
 describe('copyWithin', () => {
+  describe('no args', () => {
+    it('return same', () => {
+      const array = [1, 2, 3, 4, 5, 6, 7, 8];
+      const actual = array.copyWithin();
+      assert.deepEqual(actual, [1, 2, 3, 4, 5, 6, 7, 8]);
+    });
+  });
+
   describe('1 args (target only)', () => {
     it('return same', () => {
       const array = [1, 2, 3, 4, 5, 6, 7, 8];
