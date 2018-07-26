@@ -53,6 +53,13 @@ describe('shift', () => {
       const array = [, , , , 4, , , , , ,];
       array.shift2();
       assert.deepEqual(array, [, , , 4, , , , , ,]);
+      assert.isFalse(0 in array);
+      assert.isFalse(1 in array);
+      assert.isFalse(2 in array);
+      assert.isFalse(4 in array);
+      assert.isFalse(5 in array);
+      assert.isFalse(6 in array);
+      assert.isFalse(7 in array);
     });
   });
 });

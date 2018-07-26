@@ -11,7 +11,9 @@ Array.prototype.shift2 = function() {
   this.length = copy.length ? copy.length - 1 : 0;
 
   return Array.from(this).reduce((acc, cur, index) => {
-    this[index] = copy[index + 1];
+    if (index + 1 in copy) {
+      this[index] = copy[index + 1];
+    }
     return index === 0 ? copy[index] : acc;
   }, undefined);
 };
