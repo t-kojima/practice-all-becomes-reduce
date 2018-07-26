@@ -60,6 +60,14 @@ describe('every', () => {
     });
   });
 
+  describe('check truthly', () => {
+    it('return true', () => {
+      const array = [1, 3, 5, 7];
+      const actual = array.every(i => i);
+      assert.isTrue(actual);
+    });
+  });
+
   describe('no args', () => {
     it('throw TypeError', () => {
       const array = [1, 2, 3];
