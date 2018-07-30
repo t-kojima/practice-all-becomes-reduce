@@ -1,11 +1,9 @@
 Array.prototype.keys = function() {
-  const list = array => Array.from(Array(array.length));
-
   const iterator = this[Symbol.iterator]();
   let count = 0;
   iterator.next = () => {
     try {
-      return list(this).reduce(
+      return Array.from(this).reduce(
         acc => (count < this.length ? { value: count, done: false } : acc),
         { value: undefined, done: true }
       );

@@ -1,6 +1,4 @@
 Array.prototype.includes = function(target, fromIndex = 0) {
-  const list = array => Array.from(Array(array.length));
-
   const parse = value =>
     Math.min(
       Math.max(Number.parseInt(value, 10) + (value < 0 ? this.length : 0), 0),
@@ -12,7 +10,7 @@ Array.prototype.includes = function(target, fromIndex = 0) {
 
   const findex = parse(fromIndex);
 
-  return list(this).reduce(
+  return Array.from(this).reduce(
     (acc, cur, index) =>
       !acc && index >= findex && sameValueZero(this[index], target)
         ? true
