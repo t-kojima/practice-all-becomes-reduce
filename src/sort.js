@@ -1,12 +1,10 @@
 /* eslint-disable array-callback-return, no-param-reassign */
 const concat = (...args) =>
   args.reduce((acc, array) => {
-    Array.from(array).reduce((_, cur, index) => {
-      if (index in array) {
-        acc[acc.length] = array[index];
-      } else {
-        acc.length += 1;
-      }
+    const len = acc.length;
+    acc.length += array.length;
+    array.reduce((_, cur, index) => {
+      acc[len + index] = cur;
     }, null);
     return acc;
   }, []);

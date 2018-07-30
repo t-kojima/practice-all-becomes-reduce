@@ -8,17 +8,10 @@ Array.prototype.slice = function(begin = 0, end = this.length) {
   const b = parse(begin);
   const e = parse(end);
 
-  const copy = Array.from(this).reduce((acc, cur, index) => {
-    if (index in this) {
-      acc[index] = cur;
-    }
-    return acc;
-  }, Array(this.length));
-
-  return Array.from(this).reduce((acc, cur, index) => {
+  return this.reduce((acc, cur, index) => {
     if (index >= b && index < e) {
-      acc[acc.length] = copy[index];
+      acc[index - b] = cur;
     }
     return acc;
-  }, []);
+  }, Array(e - b));
 };
