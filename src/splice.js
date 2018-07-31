@@ -1,42 +1,54 @@
-Array.prototype.splice = function(idx, howMany = Infinity, ...elements) {
-  const parse = value =>
+/* eslint-disable array-callback-return */
+Array.prototype.splice = function(idx = this.length, howMany, ...elements) {
+  // 未指定の場合: this.length => 全て非対象
+  // 不正な値(NaN)の場合: 0 => 全て対象
+  // マイナスの値の場合: 末尾からのオフセット（に相当するインデックスに置換される）
+  // 最大値: this.length, 最小値: 0
+  const i =
     Math.min(
-      Math.max(Number.parseInt(value, 10) + (value < 0 ? this.length : 0), 0),
+      Math.max(Number.parseInt(idx, 10) + (idx < 0 ? this.length : 0), 0),
       this.length
-    );
-  const i = parse(idx || this.length);
-  const h = Number.parseInt(
-    Math.min(Math.max(howMany, 0), this.length - i),
-    10
-  );
-  // console.log(`${i} ${h}`);
+    ) || 0;
+  // 未指定の場合: this.length - i => 全て対象
+  // 不正な値(NaN)の場合: 0 => 全て非対象
+  // 最大値: this.length - i, 最小値: 0
+  const h =
+    Math.min(
+      Math.max(Number.parseInt(howMany || this.length - i, 10), 0),
+      this.length - i
+    ) || 0;
 
-  const copy = Array.from(this).reduce((acc, cur, index) => {
-    if (index in this) {
-      acc[index] = cur;
+  // 配列のi位置にelementsを挿入した配列コピーを返す
+  const copyWithElements = Array.from(
+    Array(this.length + elements.length)
+  ).reduce((acc, cur, index) => {
+    if (index < i && index in this) {
+      acc[index] = this[index];
+    }
+    if (index >= i && index < i + elements.length) {
+      acc[index] = elements[index - i];
+    }
+    if (index >= i + elements.length && index - elements.length in this) {
+      acc[index] = this[index - elements.length];
     }
     return acc;
-  }, Array(this.length));
+  }, Array(this.length + elements.length));
 
   this.length = 0;
+  this.length = copyWithElements.length - h;
 
-  return Array.from(copy).reduce((acc, cur, index) => {
-    if (index === i) {
-      elements.reduce((_, element) => {
-        this[this.length] = element;
-      }, null);
+  // index - i - elements.lengthからh個の要素を切り出す。
+  // (事前にelementsを挿入しているので、elements.length分ズレる)
+  return copyWithElements.reduce((acc, cur, index) => {
+    if (index < i + elements.length) {
+      this[index] = cur;
     }
-    if (index >= i && index < i + h) {
-      if (index in copy) {
-        acc[acc.length] = copy[index];
-      } else {
-        acc.length += 1;
-      }
-    } else if (index in copy) {
-      this[this.length] = copy[index];
-    } else {
-      this.length += 1;
+    if (index >= i + elements.length && index < i + h + elements.length) {
+      acc[index - i - elements.length] = cur;
+    }
+    if (index >= i + h + elements.length) {
+      this[index - h] = cur;
     }
     return acc;
-  }, []);
+  }, Array(h));
 };

@@ -153,6 +153,32 @@ describe('splice', () => {
     });
   });
 
+  describe('all strings', () => {
+    it('cut all', () => {
+      const array = [1, 2, 3, 4, 5];
+      // array.splice(0)と同じ
+      const actual = array.splice('a');
+      assert.deepEqual(actual, [1, 2, 3, 4, 5]);
+      assert.deepEqual(array, []);
+    });
+
+    it('not cut', () => {
+      const array = [1, 2, 3, 4, 5];
+      // array.splice(0, 0)と同じ
+      const actual = array.splice('a', 'b');
+      assert.deepEqual(actual, []);
+      assert.deepEqual(array, [1, 2, 3, 4, 5]);
+    });
+
+    it('push c', () => {
+      const array = [1, 2, 3, 4, 5];
+      // array.splice(0, 0, 'c')と同じ
+      const actual = array.splice('a', 'b', 'c');
+      assert.deepEqual(actual, []);
+      assert.deepEqual(array, ['c', 1, 2, 3, 4, 5]);
+    });
+  });
+
   describe('2 args and some values', () => {
     it('cut 2 items and add 2 items when 1 to 2', () => {
       const array = [1, 2, 3, 4, 5];
