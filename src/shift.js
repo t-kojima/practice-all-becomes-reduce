@@ -1,9 +1,7 @@
 // Array.prototype.shift = にするとmochaが循環する。
 Array.prototype.shift2 = function() {
-  const copy = Array.from(this).reduce((acc, cur, index) => {
-    if (index in this) {
-      acc[index] = cur;
-    }
+  const copy = this.reduce((acc, cur, index) => {
+    acc[index] = cur;
     return acc;
   }, Array(this.length));
 

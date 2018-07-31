@@ -1,8 +1,6 @@
 Array.prototype.unshift = function(...elements) {
-  const copy = Array.from(this).reduce((acc, cur, index) => {
-    if (index in this) {
-      acc[index] = cur;
-    }
+  const copy = this.reduce((acc, cur, index) => {
+    acc[index] = cur;
     return acc;
   }, Array(this.length));
 

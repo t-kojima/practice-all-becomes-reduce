@@ -16,10 +16,8 @@ Array.prototype.concat = function(...args) {
       return acc;
     },
     // initialValueとしてthisのコピーを渡す
-    Array.from(this).reduce((acc, cur, index) => {
-      if (index in this) {
-        acc[index] = cur;
-      }
+    this.reduce((acc, cur, index) => {
+      acc[index] = cur;
       return acc;
     }, Array(this.length))
   );
