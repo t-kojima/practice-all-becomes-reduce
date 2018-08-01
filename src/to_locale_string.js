@@ -4,8 +4,9 @@ Array.prototype.toLocaleString = function() {
   // 空配列は空文字列を返す
   if (this.length === 0) return '';
 
-  return Array.from(this).reduce(
-    (acc, cur) =>
-      `${value(acc).toLocaleString()},${value(cur).toLocaleString()}`
-  );
+  return Array.from(this).reduce((acc, cur) => {
+    console.log(acc);
+    console.log(cur);
+    return `${value(acc).toLocaleString()},${value(cur).toLocaleString()}`;
+  });
 };

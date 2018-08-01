@@ -1,4 +1,4 @@
-Array.prototype.slice = function(begin = 0, end = this.length) {
+Array.prototype.slice2 = function(begin = 0, end = this.length) {
   const parse = value =>
     Math.min(
       Math.max(Number.parseInt(value, 10) + (value < 0 ? this.length : 0), 0),
