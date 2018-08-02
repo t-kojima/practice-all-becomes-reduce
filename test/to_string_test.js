@@ -29,6 +29,24 @@ describe('toString', () => {
     );
   });
 
+  it('undefined', () => {
+    const array = [undefined];
+    const actual = array.toString();
+    assert.equal(actual, '');
+  });
+
+  it('null', () => {
+    const array = [null];
+    const actual = array.toString();
+    assert.equal(actual, '');
+  });
+
+  it('NaN', () => {
+    const array = [Number.NaN];
+    const actual = array.toString();
+    assert.equal(actual, 'NaN');
+  });
+
   it('is not destructive', () => {
     const array = [1, 2, 3];
     array.toString();

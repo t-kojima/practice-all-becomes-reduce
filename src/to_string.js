@@ -4,7 +4,10 @@ Array.prototype.toString = function() {
   // 空配列は空文字列を返す
   if (this.length === 0) return '';
 
-  return Array.from(this).reduce(
-    (acc, cur) => `${value(acc).toString()},${value(cur).toString()}`
-  );
+  const copy = Array.from(this).reduce((acc, cur, index) => {
+    acc[index] = value(cur).toString();
+    return acc;
+  }, []);
+
+  return copy.reduce((acc, cur) => `${acc},${cur}`);
 };
